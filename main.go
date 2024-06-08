@@ -21,8 +21,12 @@ func fatalErr(err error) {
 }
 
 func main() {
-	fileName := os.Args[0]
-	format := os.Args[1]
+	if len(os.Args) != 3 {
+		color.Red("Too many or too less arguments.")
+		color.Blue("Example correct command: imagiconv image.jpg png")
+	}
+	fileName := os.Args[1]
+	format := os.Args[2]
 
 	color.Blue("Converting image...")
 	file, err := os.Open(fileName)
