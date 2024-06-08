@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"image"
 	"os"
 	"strings"
@@ -22,24 +21,18 @@ func fatalErr(err error) {
 }
 
 func main() {
-	fileName := flag.String("file", "", "set filename")
-	format := flag.String("format", "png", "set new file format")
-	help := flag.Bool("help", false, "display help")
-	flag.Parse()
-
-	if *help {
-		flag.Usage()
-	}
+	fileName := os.Args[0]
+	format := os.Args[1]
 
 	color.Blue("Converting image...")
-	file, err := os.Open(*fileName)
+	file, err := os.Open(fileName)
 	defer file.Close()
 	fatalErr(err)
 	image, _, err := image.Decode(file)
 	fatalErr(err)
 
-	newFileName := strings.Split(*fileName, ".")[0] + "." + *format
-	switch *format {
+	newFileName := strings.Split(fileName, ".")[0] + "." + format
+	switch format {
 	case "png":
 		imageFile, err := os.Create(newFileName)
 		fatalErr(err)
