@@ -7,6 +7,7 @@ import (
 
 	"github.com/fatih/color"
 
+	_ "golang.org/x/image/webp"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
